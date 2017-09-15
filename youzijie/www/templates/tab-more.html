@@ -1,0 +1,22 @@
+<ion-view view-title="更多" hide-tabs="true" hide-nav-bar="true">
+	<div class="bar bar-header" style="background: #ff5793;">
+	  <a class="button light icon ion-chevron-left" style="background: #ff5793;" href="#/tab/help"></a>
+	  <h1 class="title" style="color: white;">{{names}}</h1>
+	</div>
+	<ion-content>
+		<div style="height: 0.75rem;"></div>
+		<div class="list">
+			<a class="item item-icon-right" ng-repeat="con in faces"  ng-click="details({{con.myid}})">
+				{{con.main}}
+				<i class="icon ion-ios-arrow-right"></i>
+			</a>
+		</div>
+	</ion-content>
+	<!--尾部-->
+		<div class="tabs" >
+			<div class="row">
+		    <div class="col col-10"></div>
+		    <div class="col col-80 light" style="border-radius: 10px;background: #ff5793;text-align: center;line-height: 0.5rem;">我的意见反馈</div>
+		   </div>
+		</div>
+</ion-view>

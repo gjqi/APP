@@ -1,0 +1,66 @@
+<ion-view view-title="帮助与反馈" hide-tabs="true" hide-nav-bar="true">
+	<style type="text/css">
+		.helps{
+			color: #323232;
+			font-size: 20px;
+		}
+		.item{
+			font-size: 20px;
+		}
+		.buy_help{
+			border-left: 3px solid #fa377d;
+		}
+		.buy_first{
+			margin-left: 0.3rem;
+			color: #fa377d;
+			font-size: 25px;
+		}
+		.buy_second{float: right;font-size: 23px;color: #888888;}
+		.buy{width: 100%;padding: 0.3rem 0;}
+		.buy>i{float:right ;}
+	</style>
+	<div class="bar bar-header" style="background: #ff5793;">
+	  <a class="button light icon ion-chevron-left" style="background: #ff5793;" href="#/tab/me"></a>
+	  <h1 class="title" style="color: white;">帮助与反馈</h1>
+	</div>
+	<ion-content style="background:#eeeeee;">
+		<div style="height: 0.75rem;"></div>
+		<div class="list">
+			<div class="item">
+				使用帮助
+			</div>
+			<div class="row" style="background: white;">
+				<div class="col col-25"><img src="img/我/help_01.png" /><p class="helps">如何购买</p></div>
+				<div class="col col-25"><img src="img/我/help_02.png" /><p class="helps" style="padding-top: 4px;">订单问题</p></div>
+				<div class="col col-25"><img src="img/我/help_03.png" /><p class="helps">柚币商城</p></div>
+			</div>
+			<div class="padding"></div>
+			<div class="item">常见问题</div>
+			<div class="item" ng-repeat="mehelp in myhelp">
+				<p class="buy_help">
+					<span class="buy_first">{{mehelp.name}}</span>
+					<span class="buy_second" ng-click="more({{mehelp.id}})">更多</span>
+				</p>
+				<div class="buy" ng-click="details({{mehelp.face[0].myid}})">
+				    {{mehelp.face[0].main}}
+				    <i class="icon ion-ios-arrow-right"></i>
+				</div>
+				<div class="buy"  ng-click="details({{mehelp.face[1].myid}})">
+				    {{mehelp.face[1].main}}
+				    <i class="icon ion-ios-arrow-right"></i>
+				</div>
+				<div class="buy"  ng-click="details({{mehelp.face[2].myid}})">
+				   {{mehelp.face[2].main}}
+				    <i class="icon ion-ios-arrow-right"></i>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+	<!--尾部-->
+		<div class="tabs" >
+			<div class="row">
+		    <div class="col col-10"></div>
+		    <div class="col col-80 light" style="border-radius: 10px;background: #ff5793;text-align: center;line-height: 0.6rem;">我的意见反馈</div>
+		   </div>
+		</div>
+</ion-view>

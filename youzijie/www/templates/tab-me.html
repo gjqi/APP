@@ -1,0 +1,100 @@
+<ion-view hide-nav-bar="true">
+	<style type="text/css">
+		.banner{
+			width: 100%;
+			height: 2.44rem;
+			background: white;
+		}
+		.left{
+			float: left;
+			padding: 0.8rem 0.4rem;
+		}
+		.right{
+			float: right;
+			padding: 0.4rem 0.5rem;
+		}
+		.right>img{
+			width: 2.2rem;
+			height:1.62rem;
+		}
+		.row-spe{
+			height: 4rem;
+		}
+		.col-spe{
+			height: 3.9rem;
+		}
+		.item-image{
+			width: 100%;
+			height: 2.86rem;
+		}
+	</style>
+	<div class="bar bar-header" style="background: #ff5793;">
+	  <h1 class="title" style="color: white;">我</h1>
+	</div>
+  <ion-content style="background:#eeeeee;"> 
+    <div style="width: 100%;height: 1.2rem;"></div>
+    <div class="list">
+	  <a class="item item-icon-left item-icon-right" href="#/tab/login">
+	    <i class="icon ion-social-octocat"></i>
+	    <span>手机号码登录</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a>
+	  <div class="padding"></div>
+	  <a class="item item-icon-left item-icon-right" ng-click="phoneTB()">
+	    <i class="icon ion-clipboard" style="color: #39c9fe;"></i>
+	    <span>订单</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a>
+	  <a class="item item-icon-left item-icon-right" href="#">
+	    <i class="icon ion-mic-b" style="color: #ff929c;"></i>
+	    <span>她她圈</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a><a class="item item-icon-left item-icon-right" href="#">
+	    <i class="icon ion-chatbox-working" style="color: #ff7ebb;"></i>
+	    <span>话题</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a><a class="item item-icon-left item-icon-right" href="#/tab/help">
+	    <i class="icon ion-ios-help" style="color: #d6a3ff;"></i>
+	    <span>帮助与反馈</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a><a class="item item-icon-left item-icon-right" href="#/tab/setting">
+	    <i class="icon ion-gear-b" style="color: #abdd8f;"></i>
+	    <span>设置</span>
+	    <span style="float: right;">淘宝账号</span>
+	    <i class="icon ion-ios-arrow-right"></i>
+	  </a>
+    </div>
+    <div class="padding"></div>
+    <div class="banner">
+    	<div class="left">
+    		<p style="font-size: 32px;color: #ff5073;">柚币购</p>
+    		<p>【话费秒杀周】全国全</p>
+    	</div>
+    	<div class="right">
+    		<img src="img/我/0.png"/>
+    	</div>
+    </div>
+    <div class="padding"></div>
+    <div class="list">
+    	<div class="item">
+    		<i class="ion-heart" style="color: #ff2877;margin-left: 0.2rem;font-size: 26px;"></i>
+    		<span style="font-size: 26px;">猜你喜欢</span>
+    	</div>
+    	<div class="row row-spe" ng-repeat="row in groomlist">
+    		<div class="col col-50 col-spe" ng-repeat="col in row">
+    			<div class="item item-image">
+				    <img src="{{URLAdmin+col.face}}">
+				</div>
+				<div style="background: white;">
+					<span style="color: white;background: #b61020;">天猫</span>
+					<span>{{col.name}}</span>
+				</div>
+				<div style="background: white;">
+					<span style="color: #ff5793;">{{col.now}}</span>
+					<span style="color: #888888;text-decoration: line-through;">{{col.old}}</span>
+				</div>
+    		</div>
+    	</div>
+    </div>
+  </ion-content>
+</ion-view>

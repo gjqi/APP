@@ -1,0 +1,516 @@
+<ion-view view-title="今日上新" hide-nav-bar="true">
+	<style type="text/css">
+		.sign{
+			width: 1.5rem;
+			height: 0.52rem;
+			background: rgba(255,255,255,0.3);
+			line-height: 0.52rem;
+			border-radius: 50px 0 0 50px;
+			padding-left: 0.26rem;
+			position: absolute;
+			right: 0;
+			box-sizing: border-box;
+		}
+		.box{
+			width: 100%;
+			height: 2rem;
+		}
+		.box>img{
+			width: 100%;
+			height: 2rem;
+		}
+		.sy_img>img{
+			width: 0.72rem;
+			height: 0.72rem;
+			margin-left: 0.1rem;
+		}
+		.content{
+			background: #f5f5f5;
+		}
+		.colors{
+			font-size: 12px;
+			color: #a7a7a7;
+		}
+		#swiper-container2{
+				width: 100%;
+				font-size: 0.3rem;
+				height: 1rem;
+				text-align: center;
+				background: white;
+				line-height: 1rem;
+			}
+			#swiper-container3{
+				width: 100%;
+				height: auto;
+				background: #f5f5f5;
+			}
+			#swiper-container3>div {
+				width: 100%;
+				height: auto;
+				font-size: 0.2rem;
+			}
+			.active-nav{
+				border-bottom: 3px solid #ff5793;
+				color: #ff5793;
+				
+			}
+	</style>
+	<!--头部-->
+	<div ng-controller="todayNewCtrl">
+		<div class="bar bar-header" style="background: #ff5793;height:0.8rem;">
+		  <a class="button icon ion-android-search" style="background: #ff5793;color: white;" href="#/tab/classify"></a>
+		  <h1 class="title" style="color: white;">柚子街</h1>
+		  <div class="sign">
+		  	<span class="light">签到</span>
+		  	<img src="img/jinbi.png" style="width: 30%;height: 70%;margin-top: 7%;vertical-align: top;"/>
+		  </div>
+		</div>
+	</div>
+	
+	<div style="height: 0.6rem;"></div>
+	<!--导航-->
+	<div class="swiper-container swiper-container-horizontal" id="swiper-container2">
+	<div class="swiper-wrapper" >
+		<div class="swiper-slide active-nav" style="width: 20%;">
+			上新</div>
+		<div class="swiper-slide" style="width: 20%;">
+			女装</div>
+		<div class="swiper-slide" style="width: 20%;">
+			居家</div>
+		<div class="swiper-slide" style="width: 20%;">
+			母婴</div>
+		<div class="swiper-slide" style="width: 20%;">
+			鞋包配饰</div>
+		<div class="swiper-slide" style="width: 20%;">
+			美妆</div>
+		<div class="swiper-slide" style="width: 20%;">
+			内衣</div>
+		<div class="swiper-slide" style="width: 20%;">
+			美食</div>
+		<div class="swiper-slide" style="width: 20%;">
+			数码</div>
+		<div class="swiper-slide" style="width: 20%;">
+			运动户外</div>
+		<div class="swiper-slide" style="width: 20%;">
+			图文</div>
+		<div class="swiper-slide" style="width: 20%;">
+			男士</div>
+	</div>
+</div>
+<ion-content>
+<div style="height: 1.6rem;"></div>
+<ion-refresher pulling-text="柚子街为什么便宜？" on-refresh="doRefresh()" pulling-icon="ion-social-octocat">
+
+</ion-refresher>
+<div class="swiper-container swiper-container-horizontal" id="swiper-container3">
+	<div class="swiper-wrapper" >
+		<div class="swiper-slide blue-slide" >
+			
+			<!--轮播-->
+    <ion-slide-box auto-play="true" show-pager="true" does-continue="true" slide-interval="1000">
+    	<ion-slide ng-repeat="bannerPic in bannerData">
+    		<div class="box"><img src="{{URLAdmin+bannerPic.face}}"/></div>
+    	</ion-slide>
+    </ion-slide-box>
+    <!--推广-->
+    <ion-list>
+    	<ion-item>
+    		<div class="row" ng-repeat="row in recommendlist">
+    			<div class="col col-20" ng-repeat="col in row" ng-click="tz_product(col.id)">
+    				<div class="sy_img">
+    					<img src="{{URLAdmin+col.face}}" />
+    				</div>
+    				<p style="text-align: center;"><a>{{col.name}}</a></p>
+    			</div>
+    		</div>
+    	</ion-item>
+    </ion-list>
+    <!--广告-->
+    <div style="width: 100%;height: 1.78rem;"><img width="100%" height="auto" src="img/柚子街/1.png" /></div>
+    <div class="padding"></div>
+    <!--介绍区-->
+    <div class="row padding light-bg" style="width: 100%;height: 3.3rem;">
+    	<div class="col col-50">
+    		<div style="height: 8px;"></div>
+    		<a style="color: #ff302d;">
+    			<i class="icon ion-thumbsup"></i>
+    			<span>柚划算</span>
+    		</a>
+    		<p class="colors">大牌超低价</p>
+    		<img src="img/gg_03.png" style="width: 100%;height: auto;"/>
+    	</div>
+    	<div class="col col-50">
+    		<div class="row">
+    			<div class="col col-60">
+	    			<a style="color: #f44cb3;">
+	    				<i class="icon ion-android-globe"></i>
+	    				<span>品牌团</span>
+	    			</a>
+	    			<p class="colors">生活元素满120减30</p>
+    			</div>
+    			<div class="col col-40">
+    				<img src="img/gg_02.png"/>
+    			</div>
+    		</div>
+    		<div class="row">
+    			<div class="col col-60">
+	    			<a style="color: #ff843e;"> 
+	    				<i class="icon ion-ios-flame-outline"></i>
+	    				<span>最后疯抢</span>
+	    			</a>
+	    			<p class="colors">畅销排行榜 0.99元起</p>
+    			</div>
+    			<div class="col col-40">
+    				<img src="img/gg_01.png"/>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <!--商品列表-->
+    
+    <ion-list>
+    	<ion-item>
+    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+    	</ion-item>
+    	
+			<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+		      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+		      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+		      <span>{{pro.name}}</span>
+		      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+		      <div style="position: relative;">
+		      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+		      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+		      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+		      </div>
+		    </ion-item>
+    	
+    </ion-list>
+		</div>
+		<div class="swiper-slide red-slide">
+			<div style="height: 0.1rem;"></div>
+			<div class="row light-bg" style="text-align: center;">
+				<div class="col col-25"><img src="img/柚子街/nv_01.png" /><p>裙装套装</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_02.png" /><p>裤装牛仔</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_03.png" /><p>T恤卫衣</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_04.png" /><p>毛衣针织</p></div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide orange-slide">
+			<div><img src="img/柚子街/jj_01.png" /></div>
+			<div class="row light-bg" ng-repeat="home in myliving"  ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide blue-slide" >
+			<div><img src="img/柚子街/my.png" /></div>
+			<div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide red-slide">
+			<!--轮播-->
+		    <ion-slide-box auto-play="true" show-pager="true" does-continue="true" slide-interval="1000">
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/xie_01.PNG"/></div>
+		    	</ion-slide>
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/xie_02.png"/></div>
+		    	</ion-slide>
+		    </ion-slide-box>
+		    <div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide orange-slide" >
+			<!--轮播-->
+		    <ion-slide-box auto-play="true" show-pager="true" does-continue="true" slide-interval="1000">
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/mz_01.png"/></div>
+		    	</ion-slide>
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/mz_02.png"/></div>
+		    	</ion-slide>
+		    </ion-slide-box>
+		    <div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide red-slide" >
+			<div><img src="img/柚子街/ny.png" /></div>
+			<div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct"  ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide blue-slide" >
+			<!--轮播-->
+		    <ion-slide-box auto-play="true" show-pager="true" does-continue="true" slide-interval="1000">
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/ms_01.png"/></div>
+		    	</ion-slide>
+		    	<ion-slide>
+		    		<div class="box"><img src="img/柚子街/ms_02.png"/></div>
+		    	</ion-slide>
+		    </ion-slide-box>
+		    <div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide red-slide" >
+			<div><img src="img/柚子街/sm.png" /></div>
+			<div class="row light-bg" style="text-align: center;">
+				<div class="col col-25"><img src="img/柚子街/nv_01.png" /><p>裙装套装</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_02.png" /><p>裤装牛仔</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_03.png" /><p>T恤卫衣</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_04.png" /><p>毛衣针织</p></div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>、
+		<div class="swiper-slide red-slide">
+			<div><img src="img/柚子街/js.png" /></div>
+			<div class="row light-bg" style="text-align: center;">
+				<div class="col col-25"><img src="img/柚子街/nv_01.png" /><p>裙装套装</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_02.png" /><p>裤装牛仔</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_03.png" /><p>T恤卫衣</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_04.png" /><p>毛衣针织</p></div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide orange-slide" >
+			<div class="row light-bg" style="text-align: center;">
+				<div class="col col-25"><img src="img/柚子街/nv_01.png" /><p>裙装套装</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_02.png" /><p>裤装牛仔</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_03.png" /><p>T恤卫衣</p></div>
+				<div class="col col-25"><img src="img/柚子街/nv_04.png" /><p>毛衣针织</p></div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		<div class="swiper-slide blue-slide" >
+			<div><img src="img/柚子街/ns.png" /></div>
+			<div class="row light-bg" ng-repeat="home in myliving" ng-click="tz_product(home.id)" style="text-align: center;">
+				<div class="col col-25" ng-repeat="homes in home">
+					<img src="{{URLAdmin+homes.face}}" />
+					<p>{{homes.describe}}</p>
+				</div>
+			</div>
+			<div class="padding"></div>
+			<ion-list>
+		    	<ion-item>
+		    		<i class="ion-ios-clock" style="color: #ff5793;margin-left: 1.8rem;"></i>
+		    		<span style="font-size: 12px;color: #ababab;">每天早上10点·晚上８点上新</span>
+		    	</ion-item>
+					<ion-item class="item-thumbnail-left" ng-repeat="pro in myproduct" ng-click="tz_product(pro.id)">
+				      <img src="{{URLAdmin+pro.Cpic}}" height="200%" width="200%">
+				      <span style="color: #ff5575;background: #ffdce3;font-size: 12px;">今日</span>
+				      <span>{{pro.name}}</span>
+				      <p style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}<span style="font-size: 0.18rem;border: 1px solid #ff5793;">{{pro.des}}</span></p>
+				      <div style="position: relative;">
+				      	<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;position: absolute;left: 0;bottom: -0.6rem;">{{pro.pass}}</span>
+				      	<img src="{{URLAdmin+pro.secpic}}" style="position: absolute;top: -0.5rem;right: 0;"/>
+				      	<span style="font-size: 0.2rem;color: #ababab;position: absolute;right: 0;bottom: -0.6rem;">{{pro.purchased}}</span>
+				      </div>
+				    </ion-item>
+		    </ion-list>
+		</div>
+		
+	</div>
+</div>
+</ion-content>
+</ion-view>

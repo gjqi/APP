@@ -1,0 +1,27 @@
+<ion-view hide-tabs="true" hide-nav-bar="true" ng-controller="productCtrl">
+	<div class="bar bar-header">
+	  <a class="button light-bg icon ion-chevron-left" ng-click="historys()"></a>
+	  <h1 class="title">{{name}}</h1>
+	  <a class="button light-bg">分享</a>
+	</div>
+	<ion-content style="background:#eeeeee;">
+		<ion-refresher pulling-text="每天十点，有新鲜货出没" on-refresh="doRefresh()" pulling-icon="ion-ios-baseball-outline"></ion-refresher>
+		<div style="padding: 0.42rem;"></div>
+		<div style="text-align: center;font-size: 16px;padding: 0.1rem;">
+			<i class="icon ion-android-time"></i>
+			<span id="clock"></span>
+		</div>
+		<div class="row" ng-repeat="row in products">
+			<div class="col-50" ng-repeat="pro in row" style="padding: 0.1rem;position: relative;">
+				<img src="{{URLAdmin+pro.Cpic}}" width="100%" height="70%"/>
+				<span style="color: white;background: red;font-size: 12px;">天猫</span>
+				<span>{{pro.name}}</span>
+				<div style="position: absolute;bottom: 0;width: 100%;">
+					<span style="color: #ff5793;font-size: 0.34rem;">{{pro.price}}</span>
+					<span style="font-size: 0.2rem;text-decoration: line-through;color: #a7a7a7;">{{pro.pass}}</span>
+					<span style="font-size: 0.18rem;border: 1px solid #ff5793;position: absolute;right: 0.2rem;bottom: 0;">{{pro.des}}</span>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

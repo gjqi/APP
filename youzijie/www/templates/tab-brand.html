@@ -1,0 +1,34 @@
+<ion-view hide-nav-bar="true">
+	<style type="text/css">
+		ion-content{
+			background: #f5f5f5;
+		}
+	</style>
+	<div ng-controller="brandCtrl">
+		<div class="bar bar-header" style="background: #ff5793;">
+		  <a class="button icon ion-android-search" style="background: #ff5793;color: white;" href="#/tab/classify"></a>
+		  <h1 class="title" style="color: white;">品牌团</h1>
+		</div>
+	</div>
+  <ion-content>
+  	<ion-refresher pulling-text="达人推荐，买什么都知道" on-refresh="doRefresh()" pulling-icon="ion-ios-flower-outline"></ion-refresher>
+    <div class="tabs tabs-top tabs-icon-top light-bg"  style="width: 100%;height: 1.53rem;padding: 0.1rem;">
+	  <a class="tab-item" ng-repeat="brand in mybrandgroup" ng-click="tz_product(brand.id)">
+	    <img src="{{URLAdmin+brand.face}}" width="80%" height="60%"/>
+	    <p style="margin-top: 0.1rem;">{{brand.name}}</p>
+	  </a>
+	</div>
+	<div style="width: 100%;height: 2.1rem;"></div>
+	<div class="padding"></div>
+	<div class="list">
+		<div class="item">
+			<i class="ion-heart" style="color: #ff2975;margin-left: 1.8rem;"></i>
+    		<span style="font-size: 12px;color: #ff5793;">限时特卖·每日10点上新</span>
+		</div>
+		<div ng-repeat="con in mybrandcontent"  ng-click="tz_product(con.id)">
+			<img src="{{URLAdmin+con.face}}" width="100%"/>
+			<div class="padding" style="background: #f5f5f5;"></div>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>
